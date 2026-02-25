@@ -40,8 +40,9 @@
         .floating-angel {
             position: absolute;
             pointer-events: none;
-            opacity: 0.15;
-            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+            opacity: 0.25;
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.3));
+            z-index: 0;
         }
 
         .fairy-sparkle {
@@ -59,6 +60,8 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(212, 175, 55, 0.3);
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 10;
         }
 
         .gold-gradient-text {
@@ -102,6 +105,20 @@
             display: none;
             z-index: 100;
         }
+
+        .communion-img-container {
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .angel-svg {
+            fill: var(--gold);
+        }
     </style>
 </head>
 <body>
@@ -110,9 +127,40 @@
     <div id="copy-toast" class="copy-success">Copied to clipboard!</div>
 
     <!-- Hero Section -->
-    <section class="min-h-screen flex flex-col items-center justify-center text-center px-4 relative">
-        <div class="mb-6 section-reveal" id="hero-cross">
-            <svg width="60" height="90" viewBox="0 0 60 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <section class="min-h-screen flex flex-col items-center justify-center text-center px-4 relative overflow-hidden">
+        
+        <!-- Angel Decorations -->
+        <div class="floating-angel top-10 left-10 md:left-20 w-24 h-24 md:w-32 md:h-32">
+            <svg viewBox="0 0 200 200" class="angel-svg">
+                <path d="M100,40 c-10,0 -18,8 -18,18 s8,18 18,18 s18,-8 18,-18 S110,40 100,40 z M100,80 c-20,0 -40,10 -40,30 v40 h80 v-40 C140,90 120,80 100,80 z M60,90 C40,70 20,80 20,110 c0,30 20,40 40,30 M140,90 c20,-20 40,-10 40,20 c0,30 -20,40 -40,30" opacity="0.8" />
+            </svg>
+        </div>
+        <div class="floating-angel top-20 right-10 md:right-20 w-24 h-24 md:w-32 md:h-32 scale-x-[-1]">
+            <svg viewBox="0 0 200 200" class="angel-svg">
+                <path d="M100,40 c-10,0 -18,8 -18,18 s8,18 18,18 s18,-8 18,-18 S110,40 100,40 z M100,80 c-20,0 -40,10 -40,30 v40 h80 v-40 C140,90 120,80 100,80 z M60,90 C40,70 20,80 20,110 c0,30 20,40 40,30 M140,90 c20,-20 40,-10 40,20 c0,30 -20,40 -40,30" opacity="0.8" />
+            </svg>
+        </div>
+
+        <!-- Holy Communion Image/Icon -->
+        <div class="mb-8 section-reveal communion-img-container">
+            <svg width="120" height="120" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="35" r="25" fill="url(#haloGradient)" opacity="0.6"/>
+                <circle cx="50" cy="35" r="12" fill="white" stroke="#d4af37" stroke-width="1"/>
+                <path d="M45 35H55M50 30V40" stroke="#d4af37" stroke-width="0.5"/>
+                <path d="M35 60C35 70 42 78 50 78C58 78 65 70 65 60V55H35V60Z" fill="#d4af37"/>
+                <path d="M50 78V88M40 90H60" stroke="#aa8a2e" stroke-width="3" stroke-linecap="round"/>
+                <path d="M35 55C35 55 42 58 50 58C58 58 65 55 65 55" stroke="#f4e4bc" stroke-width="2"/>
+                <defs>
+                    <radialGradient id="haloGradient" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(50 35) rotate(90) scale(25)">
+                        <stop stop-color="#f4e4bc"/>
+                        <stop offset="1" stop-color="#f4e4bc" stop-opacity="0"/>
+                    </radialGradient>
+                </defs>
+            </svg>
+        </div>
+
+        <div class="mb-4 section-reveal" id="hero-cross">
+            <svg width="40" height="60" viewBox="0 0 60 90" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M30 0V90M10 25H50" stroke="#d4af37" stroke-width="4" stroke-linecap="round"/>
             </svg>
         </div>
@@ -147,7 +195,7 @@
     </section>
 
     <!-- Details Section -->
-    <section id="details" class="py-20 px-4 max-w-4xl mx-auto space-y-12">
+    <section id="details" class="py-20 px-4 max-w-4xl mx-auto space-y-12 relative">
         <div class="glass-card rounded-3xl p-8 md:p-12 text-center section-reveal">
             <h3 class="font-cinzel text-2xl text-gold mb-6 border-b border-gold/20 pb-4">The Celebration</h3>
             <p class="text-xl mb-4">Please join us for lunch at</p>
@@ -217,11 +265,10 @@
         // Registration for GSAP ScrollTrigger
         gsap.registerPlugin(ScrollTrigger);
 
-        // Background Animation (Floating particles, angels, fairies)
+        // Background Animation (Floating particles)
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
-        let angels = [];
 
         function resize() {
             canvas.width = window.innerWidth;
@@ -256,7 +303,7 @@
             }
         }
 
-        for (let i = 0; i < 50; i++) particles.push(new Particle());
+        for (let i = 0; i < 60; i++) particles.push(new Particle());
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -268,40 +315,38 @@
         }
         animate();
 
-        // Create Fairy Sparkles and Angels using SVGs injected into body
+        // Angel & Fairy Animations
         const createCelestial = (type) => {
             const el = document.createElement('div');
-            el.className = type === 'angel' ? 'floating-angel' : 'fairy-sparkle';
-            
-            if (type === 'angel') {
-                el.innerHTML = `<svg width="80" height="80" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L4.5,20.29L5.21,21L12,18L18.79,21L19.5,20.29L12,2Z"/></svg>`;
-                el.style.left = Math.random() * 90 + '%';
-                el.style.top = Math.random() * 90 + '%';
-                document.body.appendChild(el);
-                gsap.to(el, {
-                    y: '+=50',
-                    x: '+=30',
-                    duration: 5 + Math.random() * 5,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut"
-                });
-            } else {
-                el.style.left = Math.random() * 100 + '%';
-                el.style.top = Math.random() * 100 + '%';
-                document.body.appendChild(el);
-                gsap.to(el, {
-                    opacity: 0,
-                    scale: 2,
-                    duration: 1 + Math.random() * 2,
-                    repeat: -1,
-                    ease: "power1.out"
-                });
-            }
+            el.className = 'fairy-sparkle';
+            el.style.left = Math.random() * 100 + '%';
+            el.style.top = Math.random() * 100 + '%';
+            document.body.appendChild(el);
+            gsap.to(el, {
+                opacity: 0,
+                scale: 2,
+                duration: 1 + Math.random() * 2,
+                repeat: -1,
+                ease: "power1.out"
+            });
         };
 
-        for (let i = 0; i < 6; i++) createCelestial('angel');
-        for (let i = 0; i < 20; i++) createCelestial('fairy');
+        for (let i = 0; i < 30; i++) createCelestial('fairy');
+
+        // Animate the existing Angel SVGs
+        gsap.to(".floating-angel", {
+            y: "20px",
+            x: "10px",
+            rotation: 5,
+            duration: 4,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            stagger: {
+                each: 1,
+                from: "random"
+            }
+        });
 
         // Countdown Timer
         const targetDate = new Date('May 10, 2026 12:30:00').getTime();
