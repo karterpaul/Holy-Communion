@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joanna's First Holy Communion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --soft-gold: #fcf6ba;
+            --deep-gold: #aa891b;
+            --cream: #fffdf5;
+        }
+
+        body {
+            background-color: var(--cream);
+            color: #333;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, .font-serif {
+            font-family: 'Cinzel Decorative', serif;
+        }
+
+        .cursive {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        .gold-gradient {
+            background: linear-gradient(to right, var(--deep-gold), var(--gold), var(--soft-gold), var(--gold), var(--deep-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bg-gold-gradient {
+            background: linear-gradient(135deg, var(--deep-gold), var(--gold));
+        }
+
+        /* Particle Animation */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            50% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) translateX(50px); opacity: 0; }
+        }
+
+        /* Angel/Fairy Animation */
+        .ethereal-float {
+            animation: ethereal 6s ease-in-out infinite;
+        }
+
+        @keyframes ethereal {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .btn-hover {
+            transition: all 0.3s ease;
+        }
+        .btn-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--gold);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="particles"></div>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex flex-col items-center justify-center text-center p-6">
+        <div class="z-10" data-aos="fade-up" data-aos-duration="2000">
+            <div class="mb-4 ethereal-float">
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="url(#goldGradient)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                    <defs>
+                        <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#aa891b;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#fcf6ba;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M12 2L15 5M12 2L9 5M12 2V12M12 22V12M12 12L17 10M12 12L7 10M12 12L15 15M12 12L9 15" />
+                    <circle cx="12" cy="7" r="1" />
+                    <path d="M5 15c0-3.5 3-4.5 7-4.5s7 1 7 4.5" />
+                </svg>
+            </div>
+            <p class="uppercase tracking-[0.3em] text-gray-500 text-sm mb-2">We invite you to celebrate</p>
+            <h2 class="text-3xl md:text-4xl text-gray-700 mb-2">The First Holy Communion of</h2>
+            <h1 class="text-6xl md:text-8xl cursive gold-gradient py-4">Joanna</h1>
+            <div class="w-24 h-px bg-gold-gradient mx-auto my-6"></div>
+            <p class="text-xl italic text-gray-600 mb-8">"I am the bread of life; whoever comes to me shall not hunger."</p>
+            
+            <button onclick="document.getElementById('details').scrollIntoView()" class="mt-4 px-8 py-3 rounded-full border border-[var(--gold)] text-[var(--deep-gold)] font-semibold tracking-widest uppercase text-xs btn-hover">
+                View Invitation
+            </button>
+        </div>
+    </section>
+
+    <!-- Details Section -->
+    <section id="details" class="py-20 px-6 max-w-4xl mx-auto text-center">
+        <div class="glass p-10 rounded-3xl shadow-xl relative overflow-hidden" data-aos="zoom-in">
+            <!-- Decorative corner angel -->
+            <div class="absolute top-4 right-4 opacity-20 ethereal-float">
+                <svg width="100" height="100" viewBox="0 0 24 24" fill="currentColor" class="text-[var(--gold)]">
+                    <path d="M12 2C10.9 2 10 2.9 10 4C10 5.1 10.9 6 12 6C13.1 6 14 5.1 14 4C14 2.9 13.1 2 12 2ZM21 9L19.5 7L12 9L4.5 7L3 9L9 11V22H11V16H13V22H15V11L21 9Z"/>
+                </svg>
+            </div>
+
+            <h3 class="text-2xl font-serif text-[var(--deep-gold)] mb-6">Join us for Lunch</h3>
+            <p class="text-3xl mb-2">Sunday, May 10th</p>
+            <p class="text-xl text-gray-600 mb-8">At 12:30 PM</p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10" id="countdown">
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-yellow-50">
+                    <span id="days" class="block text-3xl font-bold text-[var(--deep-gold)]">00</span>
+                    <span class="text-xs uppercase tracking-widest">Days</span>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-yellow-50">
+                    <span id="hours" class="block text-3xl font-bold text-[var(--deep-gold)]">00</span>
+                    <span class="text-xs uppercase tracking-widest">Hours</span>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-yellow-50">
+                    <span id="minutes" class="block text-3xl font-bold text-[var(--deep-gold)]">00</span>
+                    <span class="text-xs uppercase tracking-widest">Mins</span>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-yellow-50">
+                    <span id="seconds" class="block text-3xl font-bold text-[var(--deep-gold)]">00</span>
+                    <span class="text-xs uppercase tracking-widest">Secs</span>
+                </div>
+            </div>
+
+            <button onclick="addToCalendar()" class="bg-gold-gradient text-white px-8 py-3 rounded-full font-bold uppercase text-sm tracking-widest btn-hover mb-4">
+                Add to Calendar
+            </button>
+        </div>
+    </section>
+
+    <!-- AI Features Section -->
+    <section class="py-20 px-6 bg-white/30">
+        <div class="max-w-5xl mx-auto">
+            <h3 class="text-3xl font-serif text-[var(--deep-gold)] text-center mb-12" data-aos="fade-up">Guest Interactions</h3>
+            
+            <div class="grid md:grid-cols-2 gap-10">
+                <!-- Blessing Generator -->
+                <div class="glass p-8 rounded-3xl shadow-lg flex flex-col items-center text-center" data-aos="fade-up">
+                    <h4 class="text-xl font-serif mb-4 text-[var(--deep-gold)]">✨ Blessings Generator</h4>
+                    <p class="text-sm text-gray-600 mb-6">Need words for your card? Let us help you craft a heartfelt prayer or blessing for Joanna.</p>
+                    <input type="text" id="guestName" placeholder="Your Name" class="w-full mb-4 p-3 rounded-xl border border-gold/30 bg-white/50 focus:outline-none focus:ring-2 focus:ring-gold/50">
+                    <button id="generateBlessing" class="w-full bg-gold-gradient text-white px-6 py-3 rounded-xl font-bold uppercase text-xs tracking-widest btn-hover mb-4">
+                        Generate Blessing ✨
+                    </button>
+                    <div id="blessingOutput" class="text-left text-sm italic text-gray-700 bg-white/40 p-4 rounded-xl hidden border border-gold/10 min-h-[100px]"></div>
+                </div>
+
+                <!-- Scripture Finder -->
+                <div class="glass p-8 rounded-3xl shadow-lg flex flex-col items-center text-center" data-aos="fade-up" data-aos-delay="200">
+                    <h4 class="text-xl font-serif mb-4 text-[var(--deep-gold)]">✨ Scripture Gift Finder</h4>
+                    <p class="text-sm text-gray-600 mb-6">Choose a theme to find the perfect Bible verse or religious gift suggestion.</p>
+                    <select id="scriptureTheme" class="w-full mb-4 p-3 rounded-xl border border-gold/30 bg-white/50 focus:outline-none focus:ring-2 focus:ring-gold/50">
+                        <option value="wisdom">Wisdom & Growth</option>
+                        <option value="love">Love & Faith</option>
+                        <option value="protection">Divine Protection</option>
+                        <option value="light">Walking in Light</option>
+                    </select>
+                    <button id="findScripture" class="w-full bg-gold-gradient text-white px-6 py-3 rounded-xl font-bold uppercase text-xs tracking-widest btn-hover mb-4">
+                        Find Inspiration ✨
+                    </button>
+                    <div id="scriptureOutput" class="text-left text-sm italic text-gray-700 bg-white/40 p-4 rounded-xl hidden border border-gold/10 min-h-[100px]"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Venue Section -->
+    <section class="py-20 bg-white/50">
+        <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right">
+                <h3 class="text-3xl font-serif text-[var(--deep-gold)] mb-4">The Venue</h3>
+                <p class="text-xl font-semibold mb-2">Joanna’s Home</p>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    ARAT E299, Alappuram Lane,<br>
+                    Thirumala, Trivandrum - 695006
+                </p>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Alappuram+Lane,Thirumala,Trivandrum-695006" target="_blank" class="inline-block bg-gray-800 text-white px-8 py-3 rounded-full font-bold uppercase text-sm tracking-widest btn-hover">
+                    Get Directions
+                </a>
+            </div>
+            <div class="rounded-3xl overflow-hidden shadow-2xl h-80 ring-8 ring-white" data-aos="fade-left">
+                <iframe 
+                    width="100%" 
+                    height="100%" 
+                    frameborder="0" 
+                    scrolling="no" 
+                    marginheight="0" 
+                    marginwidth="0" 
+                    src="https://maps.google.com/maps?q=Alappuram%20Lane,%20Thirumala,%20Trivandrum-695006&t=&z=15&ie=UTF8&iwloc=&output=embed">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="py-20 px-6">
+        <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+            <!-- Dress Code -->
+            <div class="glass p-10 rounded-3xl text-center" data-aos="fade-up">
+                <div class="mb-4 flex justify-center text-[var(--gold)]">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.47a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.47a2 2 0 00-1.34-2.23z"/>
+                    </svg>
+                </div>
+                <h4 class="font-serif text-[var(--deep-gold)] text-xl mb-2">Dress Code</h4>
+                <p class="text-2xl">Smart Casual</p>
+            </div>
+
+            <!-- WiFi -->
+            <div class="glass p-10 rounded-3xl text-center" data-aos="fade-up" data-aos-delay="200">
+                <div class="mb-4 flex justify-center text-[var(--gold)]">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0M12 20h.01"/>
+                    </svg>
+                </div>
+                <h4 class="font-serif text-[var(--deep-gold)] text-xl mb-2">Guest WiFi</h4>
+                <p class="text-sm text-gray-500 mb-1">Network: Joanna's Home</p>
+                <div class="flex items-center justify-center gap-2 mt-4">
+                    <code class="bg-white px-3 py-1 rounded border border-gray-100 text-sm">FirstHMay2026</code>
+                    <button onclick="copyWifi()" class="text-xs bg-[var(--gold)] text-white px-3 py-1 rounded-full hover:opacity-80 transition-opacity uppercase font-bold">Copy</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 text-center text-gray-400 text-sm">
+        <div class="ethereal-float mb-4 inline-block">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" class="text-[var(--gold)] opacity-30">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+        </div>
+        <p>Created with love for Joanna’s Special Day</p>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-6 py-3 rounded-full opacity-0 transition-opacity duration-300 pointer-events-none z-50">
+        Copied to clipboard!
+    </div>
+
+    <script>
+        const apiKey = ""; // Provided at runtime
+
+        // Initialize Animations
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Background Particles
+        const particleContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            const size = Math.random() * 5 + 2;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.animationDelay = `${Math.random() * 15}s`;
+            particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+            particleContainer.appendChild(particle);
+        }
+
+        // Countdown Logic
+        const targetDate = new Date('May 10, 2026 12:30:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const gap = targetDate - now;
+
+            const second = 1000;
+            const minute = second * 60;
+            const hour = minute * 60;
+            const day = hour * 24;
+
+            const d = Math.floor(gap / day);
+            const h = Math.floor((gap % day) / hour);
+            const m = Math.floor((gap % hour) / minute);
+            const s = Math.floor((gap % minute) / second);
+
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            const secondsEl = document.getElementById('seconds');
+
+            if (daysEl) daysEl.innerText = d < 10 ? '0' + d : d;
+            if (hoursEl) hoursEl.innerText = h < 10 ? '0' + h : h;
+            if (minutesEl) minutesEl.innerText = m < 10 ? '0' + m : m;
+            if (secondsEl) secondsEl.innerText = s < 10 ? '0' + s : s;
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Copy WiFi Logic
+        function copyWifi() {
+            const pass = "FirstHMay2026";
+            const el = document.createElement('textarea');
+            el.value = pass;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+
+            const toast = document.getElementById('toast');
+            toast.style.opacity = '1';
+            setTimeout(() => toast.style.opacity = '0', 2000);
+        }
+
+        // Add to Calendar
+        function addToCalendar() {
+            const event = {
+                title: "Joanna's First Holy Communion Lunch",
+                location: "ARAT E299, Alappuram Lane, Thirumala, Trivandrum-695006",
+                description: "Celebrating Joanna's First Holy Communion",
+                start: "20260510T123000",
+                end: "20260510T160000"
+            };
+
+            const icsData = [
+                "BEGIN:VCALENDAR",
+                "VERSION:2.0",
+                "BEGIN:VEVENT",
+                `DTSTART:${event.start}`,
+                `DTEND:${event.end}`,
+                `SUMMARY:${event.title}`,
+                `DESCRIPTION:${event.description}`,
+                `LOCATION:${event.location}`,
+                "END:VEVENT",
+                "END:VCALENDAR"
+            ].join("\n");
+
+            const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.setAttribute('download', 'communion-event.ics');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Gemini AI Functions
+        async function callGemini(prompt, systemPrompt) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] }
+            };
+
+            for (let i = 0; i < 5; i++) {
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const data = await response.json();
+                    return data.candidates?.[0]?.content?.parts?.[0]?.text || "I'm sorry, I couldn't generate that right now.";
+                } catch (e) {
+                    await new Promise(r => setTimeout(r, Math.pow(2, i) * 1000));
+                }
+            }
+            return "Connection error. Please try again.";
+        }
+
+        document.getElementById('generateBlessing').addEventListener('click', async () => {
+            const guestName = document.getElementById('guestName').value || "A Guest";
+            const btn = document.getElementById('generateBlessing');
+            const output = document.getElementById('blessingOutput');
+            
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loader"></span>';
+            output.classList.remove('hidden');
+            output.innerText = "Generating a heavenly blessing...";
+
+            const prompt = `Generate a warm, Christian blessing for a young girl named Joanna on her First Holy Communion day. It should be from ${guestName}. Keep it under 50 words, mentioning her walk with Jesus.`;
+            const systemPrompt = "You are an elegant Christian event assistant. Your writing is poetic, biblical, and sophisticated. Use words like 'Divine', 'Grace', and 'Luminous'.";
+            
+            const result = await callGemini(prompt, systemPrompt);
+            output.innerText = result;
+            btn.disabled = false;
+            btn.innerHTML = 'Generate Blessing ✨';
+        });
+
+        document.getElementById('findScripture').addEventListener('click', async () => {
+            const theme = document.getElementById('scriptureTheme').value;
+            const btn = document.getElementById('findScripture');
+            const output = document.getElementById('scriptureOutput');
+            
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loader"></span>';
+            output.classList.remove('hidden');
+            output.innerText = "Searching the scriptures...";
+
+            const prompt = `Find a perfect Bible verse for a First Holy Communion focused on the theme of ${theme}. Also suggest one small symbolic religious gift idea related to this theme for a young girl.`;
+            const systemPrompt = "You are a knowledgeable Christian guide. Provide one Bible verse (KJV or NIV) and one gift suggestion. Keep the response concise and beautifully formatted.";
+            
+            const result = await callGemini(prompt, systemPrompt);
+            output.innerText = result;
+            btn.disabled = false;
+            btn.innerHTML = 'Find Inspiration ✨';
+        });
+    </script>
+</body>
+</html>
